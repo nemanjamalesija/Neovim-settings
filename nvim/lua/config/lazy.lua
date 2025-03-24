@@ -24,6 +24,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.lang.vue" },
     { import = "lazyvim.plugins.extras.coding.luasnip" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+
     {
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
@@ -54,7 +56,29 @@ require("lazy").setup({
       end,
     },
     { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
+
+    {
+      "williamboman/mason-lspconfig.nvim",
+      config = function()
+        -- Mason LSPConfig setup
+        require("mason-lspconfig").setup({
+          -- list of servers for mason to install
+          ensure_installed = {
+            "ts_ls",
+            "volar",
+            "html",
+            "cssls",
+            "tailwindcss",
+            "somesass_ls",
+            "lua_ls",
+            "emmet_ls",
+            "stylelint_lsp",
+          },
+          -- auto-install configured servers (with lspconfig)
+          automatic_installation = true,
+        })
+      end,
+    },
     {
       "neovim/nvim-lspconfig",
       opts = {
@@ -75,31 +99,52 @@ require("lazy").setup({
             })
           end,
           settings = {
-            --
+            -- You can add specific eslint settings here if needed
           },
         })
+        lspconfig.stylelint_lsp.setup({
+          on_attach = function(client, bufnr)
+            -- Enable formatting on save
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                -- Use LSP formatting instead of trying to call Stylelint directly
+                vim.lsp.buf.format({
+                  filter = function(client)
+                    -- Only use stylelint for formatting
+                    return client.name == "stylelint_lsp"
+                  end,
+                  async = false, -- Important for BufWritePre
+                })
+              end,
+            })
+          end,
+          settings = {
+            stylelintplus = {
+              -- Enable auto-fix on save
+              autoFixOnSave = true,
+              autoFixOnFormat = true,
+            },
+          },
+          filetypes = { "css", "scss", "less", "sass" },
+        })
+
         -- TypeScript LSP server
-        lspconfig.tsserver.setup({
-          on_attach = function(client)
-            client.server_capabilities.document_formatting = false
-          end,
-        })
+        lspconfig.ts_ls.setup({})
 
-        -- Vue LSP server for Vue 3
         lspconfig.volar.setup({
-          on_attach = function(client)
-            client.server_capabilities.document_formatting = false
-          end,
+          -- add filetypes for typescript, javascript and vue
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          init_options = {
+            vue = {
+              -- disable hybrid mode
+              hybridMode = false,
+            },
+          },
         })
-
-        -- LSP key mappings
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-        vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-        vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       end,
     },
-    { import = "lazyvim.plugins.extras.linting.eslint" },
+
     -- { import = "lazyvim.plugins.extras.formatting.prettier" },
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
