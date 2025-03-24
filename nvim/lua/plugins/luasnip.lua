@@ -155,7 +155,20 @@ return {
         t("*/"),
       })
     )
-
+    
+    table.insert(
+      snippets,
+      s({
+        trig = "prettierignore",
+        name = "Prettier ignore block",
+        desc = "Creates a block to disable prettier formatting",
+      }, {
+        t({ "/* eslint-disable prettier/prettier */", "" }),
+        i(1, "// code to ignore"),
+        t({ "", "/* eslint-enable */" }),
+      })
+    )
+    
     table.insert(
       snippets,
       s({
