@@ -16,3 +16,9 @@ vim.api.nvim_set_keymap("n", "<leader>`", ":ToggleTerm<CR>", { noremap = true, s
 -- Navigate to buffer on the left/right (previous/next buffer)
 vim.api.nvim_set_keymap("n", "<Leader>wh", ":bprevious<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>wl", ":bnext<CR>", { noremap = true, silent = true })
+
+-- Remap vim-move keys with Alt (A) to move lines up and down
+vim.api.nvim_set_keymap("n", "<A-k>", "<Plug>MoveLineUp", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-j>", "<Plug>MoveLineDown", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<Leader>s", ":w<CR>", { noremap = true, silent = true })
