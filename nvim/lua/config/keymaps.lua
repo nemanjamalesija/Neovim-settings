@@ -13,9 +13,17 @@ vim.api.nvim_set_keymap("n", "<leader>O", ":NvimTreeFindFile<CR>", { noremap = t
 -- Toggle terminal
 vim.api.nvim_set_keymap("n", "<leader>`", ":ToggleTerm<CR>", { noremap = true, silent = true })
 
--- Navigate to buffer on the left/right (previous/next buffer)
-vim.api.nvim_set_keymap("n", "<Leader>wh", ":bprevious<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>wl", ":bnext<CR>", { noremap = true, silent = true })
-
 -- Save file
 vim.api.nvim_set_keymap("n", "<Leader>s", ":w<CR>", { noremap = true, silent = true })
+
+-- Quit
+vim.api.nvim_set_keymap("n", "<Leader>q", ":q<CR>", { noremap = true, silent = true })
+
+-- Find references
+vim.api.nvim_set_keymap("n", "<leader>F", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+
+-- LSP key mappings
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
