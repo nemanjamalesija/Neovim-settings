@@ -18,6 +18,7 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
@@ -25,20 +26,12 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.vue" },
     { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
-    {
-      "numToStr/Comment.nvim",
-      opts = {
-        -- add any options here
-      },
-    },
     -- { import = "lazyvim.plugins.extras.formatting.prettier" },
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      opts = { enable = true },
-    },
 
     { "akinsho/toggleterm.nvim", version = "*", config = true },
     { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }, cmd = "Telescope" },
+    { "tpope/vim-eunuch" },
+
     { import = "plugins" },
   },
   defaults = {
