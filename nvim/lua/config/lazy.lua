@@ -63,6 +63,21 @@ require("lazy").setup({
       config = function()
         local lspconfig = require("lspconfig")
 
+        lspconfig.eslint.setup({
+          on_attach = function(client, bufnr)
+            -- Enable code action on save (equivalent to VS Code's lsp_code_actions_on_save)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                -- Run eslint fix on save (equivalent to source.fixAll.eslint: true)
+                vim.cmd("EslintFixAll")
+              end,
+            })
+          end,
+          settings = {
+            --
+          },
+        })
         -- TypeScript LSP server
         lspconfig.tsserver.setup({
           on_attach = function(client)
@@ -85,7 +100,7 @@ require("lazy").setup({
       end,
     },
     { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       opts = { enable = true },
@@ -140,4 +155,4 @@ require("lazy").setup({
       },
     },
   },
-})
+}
