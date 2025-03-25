@@ -22,6 +22,7 @@ return {
         red = "#ff6188",
         orange = "#fd9621",
         yellow = "#e7db74",
+        yellowMonokai = "#ffd866",
         cyan = "#6be2f4",
         green = "#a9e34b",
         teal = "#4dd499",
@@ -55,6 +56,8 @@ return {
         },
         override = function(c)
           return {
+            MatchParen = { fg = palette.yellowMonokai, bg = palette.dark, bold = true },
+
             ["@variable.builtin"] = { fg = palette.red },
             ["@variable.parameter"] = { fg = palette.orange },
             ["@string.scss"] = { fg = palette.yellow },
@@ -69,6 +72,7 @@ return {
             dark2 = palette.dark,
             dark1 = palette.dark,
             accent1 = palette.red,
+            accent3 = palette.green,
             accent4 = palette.green,
             accent5 = palette.cyan,
             accent6 = palette.teal,
