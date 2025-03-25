@@ -15,7 +15,6 @@ return {
           "emmet_ls",
           "stylelint_lsp",
         },
-
         automatic_installation = true,
       })
     end,
@@ -28,7 +27,11 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
       lspconfig.eslint.setup({
+        capabilities = capabilities,
         on_attach = function(client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
@@ -37,28 +40,25 @@ return {
             end,
           })
         end,
-        settings = {
-          -- add any settings here
-        },
       })
+
       lspconfig.stylelint_lsp.setup({
+        capabilities = capabilities,
         on_attach = function(client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
             callback = function()
-              -- Use LSP formatting instead of trying to call Stylelint directly
               vim.lsp.buf.format({
                 filter = function(client)
                   return client.name == "stylelint_lsp"
                 end,
-                async = false, -- Important for BufWritePre
+                async = false,
               })
             end,
           })
         end,
         settings = {
           stylelintplus = {
-            -- Enable auto-fix on save
             autoFixOnSave = true,
             autoFixOnFormat = true,
           },
@@ -66,11 +66,12 @@ return {
         filetypes = { "css", "scss", "less", "sass" },
       })
 
-      -- TypeScript LSP server
+      -- Typescript LSP server
       lspconfig.ts_ls.setup({})
 
-      -- Volar server
+      -- Volar LSP server
       lspconfig.volar.setup({
+        capabilities = capabilities,
         filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
         init_options = {
           vue = {
@@ -78,6 +79,37 @@ return {
           },
         },
       })
+
+      -- CSS LSP server
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+        settings = {
+          css = {
+            validate = true,
+            completion = {
+              completePropertyWithSemicolon = true,
+              triggerPropertyValueCompletion = true,
+            },
+          },
+          scss = {
+            validate = true,
+            completion = {
+              completePropertyWithSemicolon = true,
+              triggerPropertyValueCompletion = true,
+            },
+          },
+          less = {
+            validate = true,
+            completion = {
+              completePropertyWithSemicolon = true,
+              triggerPropertyValueCompletion = true,
+            },
+          },
+        },
+      })
+    end,
+  },
+}
     end,
   },
 }
