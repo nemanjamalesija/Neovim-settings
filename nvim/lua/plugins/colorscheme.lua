@@ -14,67 +14,77 @@ return {
     "loctvl842/monokai-pro.nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      transparent_background = false,
-      -- devicons = true,
-      filter = "classic", -- classic | octagon | pro | machine | ristretto | spectrum
-      inc_search = "background", -- underline | background
-      background_clear = {
-        "nvim-tree",
-        -- "neo-tree",
-        "bufferline",
-        "telescope",
-        "toggleterm",
-      },
-      plugins = {
-        bufferline = {
-          underline_selected = true,
-          underline_visible = false,
-          underline_fill = true,
-          bold = false,
-        },
-        indent_blankline = {
-          context_highlight = "pro", -- default | pro
-          context_start_underline = true,
-        },
-      },
-      override = function(c)
-        return {
+    opts = function()
+      local palette = {
+        -- Background colors
+        bg = "#1a1b1e",
+        dark = "#1a1c23",
 
-          DashboardRecent = { fg = c.base.magenta },
-          DashboardProject = { fg = c.base.blue },
-          DashboardConfiguration = { fg = c.base.white },
-          DashboardSession = { fg = c.base.green },
-          DashboardLazy = { fg = c.base.cyan },
-          DashboardServer = { fg = c.base.yellow },
-          DashboardQuit = { fg = c.base.red },
-          IndentBlanklineChar = { fg = c.base.dimmed4 },
-          NeoTreeStatusLine = { link = "StatusLine" },
-          ["@variable.builtin"] = { fg = "#ff6188" },
-          ["@variable.parameter"] = { fg = "#fd9621" },
-          ["@string.scss"] = { fg = "#e7db74" },
-          ["@string"] = { fg = "#e7db74" },
-          ["@string.yaml"] = { fg = "#e7db74" },
-          ["@character.special"] = { fg = "#ff6188" },
-        }
-      end,
-      overridePalette = function(filter)
-        return {
-          background = "#1a1b1e",
-          dark2 = "#1a1c23",
-          dark1 = "#1a1c23",
-          accent1 = "#ff6188",
-          accent5 = "#6be2f4",
-          accent4 = "#a9e34b",
-          accent6 = "#4dd499",
-          text = "#e7e7e7",
-        }
-      end,
-    },
+        -- Accent colors
+        red = "#ff6188",
+        orange = "#fd9621",
+        yellow = "#e7db74",
+        cyan = "#6be2f4",
+        green = "#a9e34b",
+        teal = "#4dd499",
+
+        -- Text colors
+        white = "#e7e7e7",
+      }
+
+      return {
+        transparent_background = false,
+        filter = "classic", -- classic | octagon | pro | machine | ristretto | spectrum
+        inc_search = "background", -- underline | background
+        background_clear = {
+          "nvim-tree",
+          -- "neo-tree",
+          "bufferline",
+          "telescope",
+          "toggleterm",
+        },
+        plugins = {
+          bufferline = {
+            underline_selected = true,
+            underline_visible = false,
+            underline_fill = true,
+            bold = false,
+          },
+          indent_blankline = {
+            context_highlight = "pro", -- default | pro
+            context_start_underline = true,
+          },
+        },
+        override = function(c)
+          return {
+            ["@variable.builtin"] = { fg = palette.red },
+            ["@variable.parameter"] = { fg = palette.orange },
+            ["@string.scss"] = { fg = palette.yellow },
+            ["@string"] = { fg = palette.yellow },
+            ["@string.yaml"] = { fg = palette.yellow },
+            ["@character.special"] = { fg = palette.red },
+          }
+        end,
+        overridePalette = function(filter)
+          return {
+            background = palette.bg,
+            dark2 = palette.dark,
+            dark1 = palette.dark,
+            accent1 = palette.red,
+            accent5 = palette.cyan,
+            accent4 = palette.green,
+            accent6 = palette.teal,
+            text = palette.white,
+          }
+        end,
+      }
+    end,
     config = function(_, opts)
       local monokai = require("monokai-pro")
       monokai.setup(opts)
       monokai.load()
+
+      vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#5b595c" })
     end,
   },
 }
