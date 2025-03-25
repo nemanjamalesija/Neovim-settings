@@ -29,7 +29,6 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.formatting.prettier" },
 
     { "akinsho/toggleterm.nvim", version = "*", config = true },
-    { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }, cmd = "Telescope" },
     { "tpope/vim-eunuch" },
 
     { import = "plugins" },
