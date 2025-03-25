@@ -69,8 +69,8 @@ return {
             dark2 = palette.dark,
             dark1 = palette.dark,
             accent1 = palette.red,
-            accent5 = palette.cyan,
             accent4 = palette.green,
+            accent5 = palette.cyan,
             accent6 = palette.teal,
             text = palette.white,
           }
