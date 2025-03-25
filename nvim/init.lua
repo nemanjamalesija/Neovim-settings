@@ -4,7 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 
 require("config.lazy")
 
--- Configure diagnostics to only show underlines
+-- Configure diagnostics
 vim.diagnostic.config({
   underline = false,
   severity_sort = true,
