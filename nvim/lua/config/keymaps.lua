@@ -6,7 +6,7 @@
 --
 -- File explorer
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree (reveal file)" })
-vim.keymap.set("n", "<leader>O", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal current file in NvimTree" })
+vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal current file in NvimTree" })
 
 -- Terminal
 vim.api.nvim_set_keymap("n", "<leader>`", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true })
