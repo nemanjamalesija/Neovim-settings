@@ -3,27 +3,29 @@
 -- Add any additional keymaps here
 -- -- Add this to ~/.config/nvim/lua/config/keymaps.lua (if using LazyVim)
 -- or add to your init.lua if you have a different setup
-vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep<cr>", { desc = "Live grep (find text)" })
-
+--
 -- File explorer
-vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>O", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree (reveal file)" })
+vim.keymap.set("n", "<leader>O", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal current file in NvimTree" })
 
--- Toggle terminal
-vim.api.nvim_set_keymap("n", "<leader>`", ":ToggleTerm<CR>", { noremap = true, silent = true })
+-- Terminal
+vim.api.nvim_set_keymap("n", "<leader>`", "<cmd>ToggleTerm<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<leader>`", [[<C-\><C-n><cmd>ToggleTerm<CR>]], { noremap = true, silent = true })
 
--- Save file
-vim.api.nvim_set_keymap("n", "<Leader>s", ":w<CR>", { noremap = true, silent = true })
+-- File operations
+vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Save file" })
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit buffer" })
 
--- Quit
-vim.api.nvim_set_keymap("n", "<Leader>q", ":q<CR>", { noremap = true, silent = true })
+-- Telescope
+vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep<cr>", { desc = "Live grep (text)" })
 
--- Find references
-vim.api.nvim_set_keymap("n", "<leader>F", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+-- LSP
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation" })
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Find references" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 
--- LSP key mappings
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+-- Misc
+vim.keymap.set("i", "<S-CR>", "<cmd><Esc>o<cr>", { desc = "New line below" })
