@@ -4,12 +4,10 @@ return {
     lazy = true,
     opts = { style = "night" },
   },
-
   {
     "catppuccin/nvim",
     lazy = true,
   },
-
   {
     "loctvl842/monokai-pro.nvim",
     lazy = false,
