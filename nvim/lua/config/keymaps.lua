@@ -29,3 +29,10 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action
 
 -- Misc
 vim.keymap.set("i", "<S-CR>", "<cmd><Esc>o<cr>", { desc = "New line below" })
+
+-- Bufferline move left/right
+vim.api.nvim_set_keymap("n", "<M-h>", ":BufferLineMovePrev<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-l>", ":BufferLineMoveNext<CR>", { noremap = true, silent = true })
+
+-- Close buffer
+vim.api.nvim_set_keymap("n", "<M-w>", ":bdelete<CR>", { noremap = true, silent = true })
