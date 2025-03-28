@@ -7,14 +7,14 @@ return {
       require("bufferline").setup({
         options = {
           mode = "buffers", -- set to "tabs" to only show tabpages instead
-          style_preset = require("bufferline").style_preset.minimal, -- or bufferline.style_preset.minimal,
+          style_preset = require("bufferline").style_preset.bufferline, -- or bufferline.style_preset.minimal,
           buffer_close_icon = "󰅖",
           modified_icon = "● ",
           close_icon = " ",
           left_trunc_marker = " ",
           right_trunc_marker = " ",
           tab_size = 18,
-          diagnostics = true,
+          diagnostics = false,
           offsets = {
             {
               filetype = "NvimTree",
@@ -26,18 +26,18 @@ return {
           color_icons = true,
           show_buffer_icons = true,
           show_buffer_close_icons = false,
-          show_close_icon = false,
+          show_close_icon = true,
           show_tab_indicators = true,
           separator_style = "slope",
           always_show_bufferline = true,
         },
       })
 
-      vim.cmd([[
-      hi BufferLineModified guifg=#fd9621 gui=underline
-      hi BufferLineModifiedVisible guifg=#fd9621 gui=underline
-      hi BufferLineModifiedSelected guifg=#fd9621 gui=underline
-    ]])
+      -- vim.cmd([[
+      --   hi BufferLineModified guifg=#fd9621 gui=underline
+      --   hi BufferLineModifiedVisible guifg=#fd9621 gui=underline
+      --   hi BufferLineModifiedSelected guifg=#fd9621 gui=underline
+      -- ]])
     end,
   },
 }
