@@ -1,17 +1,82 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "night" },
-  },
-  {
-    "catppuccin/nvim",
-    lazy = true,
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    config = function()
+      require("kanagawa").setup({
+        colors = {
+          palette = {
+            lotusInk1 = "#657b83",
+            lotusInk2 = "#657b83",
+            lotusGray = "#657b83",
+            lotusGray2 = "#657b83",
+            lotusGray3 = "#716e61",
+            lotusWhite0 = "#d5cea3",
+            lotusWhite1 = "#dcd5ac",
+            lotusWhite2 = "#e5ddb0",
+            lotusWhite3 = "#f2ecbc",
+            lotusWhite4 = "#e7dba0",
+            lotusWhite5 = "#e4d794",
+            lotusViolet1 = "#a09cac",
+            lotusViolet2 = "#766b90",
+            lotusViolet3 = "#c9cbd1",
+            lotusViolet4 = "#624c83",
+            lotusBlue1 = "#657b83",
+            lotusBlue2 = "#657b83",
+            lotusBlue3 = "#657b83",
+            lotusBlue4 = "#657b83",
+            lotusBlue5 = "#e68a00",
+            lotusGreen = "#6f894e",
+            lotusGreen2 = "#6e915f",
+            lotusGreen3 = "#b7d0ae",
+            lotusPink = "#b35b79",
+            lotusOrange = "#657b83",
+            lotusOrange2 = "#657b83",
+            lotusYellow = "#77713f",
+            lotusYellow2 = "#836f4a",
+            lotusYellow3 = "#de9800",
+            lotusYellow4 = "#f9d791",
+            lotusRed = "#c84053",
+            lotusRed2 = "#d7474b",
+            lotusRed3 = "#e82424",
+            lotusRed4 = "#d9a594",
+            lotusAqua = "#4791e4",
+            lotusAqua2 = "#6693bf",
+            lotusTeal1 = "#4e8ca2",
+            lotusTeal2 = "#4791e4",
+            lotusTeal3 = "#657b83",
+            lotusCyan = "#d7e3d8",
+            sublimeCyan = "#2aa198",
+            sublimeGreen = "#007700",
+            sublimeOrange = "#e68a00",
+          },
+          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+        },
+        overrides = function(colors) -- add/modify highlights
+          return {
+            ["@constant"] = { fg = colors.palette.lotusInk1 },
+            ["@function"] = { fg = colors.palette.sublimeGreen },
+            ["@boolean"] = { bold = false, fg = colors.palette.lotusAqua },
+            ["@variable.builtin"] = { fg = colors.palette.lotusRed },
+            ["@variable.parameter"] = { fg = colors.palette.sublimeOrange },
+            ["@operator"] = { fg = colors.palette.lotusInk1 },
+            ["@keyword"] = { fg = colors.palette.lotusRed },
+            ["@keyword.operator"] = { bold = false, fg = colors.palette.lotusRed },
+            ["@keyword.exception"] = { bold = false },
+            ["@string"] = { fg = colors.palette.sublimeCyan },
+            ["@string.scss"] = { fg = colors.palette.sublimeCyan },
+            ["@string.yaml"] = { fg = colors.palette.sublimeCyan },
+            ["@character.special"] = { fg = colors.palette.red },
+          }
+        end,
+        theme = "lotus", -- This is the main theme setting
+      })
+      vim.cmd("colorscheme kanagawa-lotus")
+    end,
   },
   {
     "loctvl842/monokai-pro.nvim",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     opts = function()
       local palette = {
         -- Background colors
@@ -64,6 +129,7 @@ return {
             ["@string"] = { fg = palette.yellow },
             ["@string.yaml"] = { fg = palette.yellow },
             ["@character.special"] = { fg = palette.red },
+            ["@Boolean"] = { fg = palette.red },
           }
         end,
         overridePalette = function(filter)
@@ -84,7 +150,7 @@ return {
     config = function(_, opts)
       local monokai = require("monokai-pro")
       monokai.setup(opts)
-      monokai.load()
+      --[[       monokai.load() ]]
 
       vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#5b595c" })
     end,
