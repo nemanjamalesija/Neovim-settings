@@ -79,6 +79,7 @@ return {
             ["@variable.builtin"] = { fg = colors.palette.lotusAqua },
             ["@variable.parameter"] = { fg = colors.palette.sublimeOrange },
             ["@operator"] = { fg = colors.palette.lotusInk1 },
+            ["@variable.builtin"] = { fg = colors.palette.lotusViolet4, bold = true },
             ["@keyword"] = { fg = colors.palette.lotusRed, bold = true },
             ["@keyword.operator"] = { bold = true, fg = colors.palette.lotusRed },
             ["@keyword.exception"] = { bold = true, fg = colors.palette.lotusRed },
@@ -93,6 +94,16 @@ return {
             DiagnosticVirtualTextError = { bg = "#ffcccc", italic = true },
             DiagnosticVirtualTextWarn = { bg = "#ffddaa", italic = true },
             DiagnosticVirtualTextInfo = { bg = "#aaccee", italic = true },
+            DiagnosticVirtualTextHint = {
+              bg = "#d5f0e2", -- Light greenish background for hints
+              fg = colors.palette.lotusInk1, -- Main text color
+              italic = true, -- Italics for emphasis
+            },
+
+            DiagnosticSignError = { fg = "#eee8d5", bold = true },
+            DiagnosticSignWarn = { fg = "#eee8d5" },
+            DiagnosticSignInfo = { fg = "#eee8d5" },
+            DiagnosticSignHint = { fg = "#eee8d5" },
           }
         end,
         theme = "lotus", -- This is the main theme setting
