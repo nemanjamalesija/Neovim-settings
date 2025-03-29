@@ -20,8 +20,8 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit buffer" })
 -- Telescope/files
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep<cr>", { desc = "Live grep (text)" })
-vim.keymap.set("n", "<leader>f", "/\\c", { noremap = true }, { desc = "Find in current buffer" })
-vim.keymap.set("n", "<leader>D", ":%s/", { noremap = true }, { desct = "Substitute word" })
+vim.keymap.set("n", "<leader>f", "/\\c", { noremap = true, desc = "Find in current buffer" })
+vim.keymap.set("n", "<leader>S", ":%s/", { noremap = true, desc = "Substitute word" })
 
 -- LSP
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation" })
@@ -34,5 +34,4 @@ vim.api.nvim_set_keymap("n", "<M-h>", ":bprevious<CR>", { desc = "Focus buffer l
 vim.api.nvim_set_keymap("n", "<M-l>", ":bnext<CR>", { desc = "See buffer on the right", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-h>", ":BufferLineMovePrev<CR>", { desc = "h-buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-l>", ":BufferLineMoveNext<CR>", { desc = "l-buffer", noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-w>", ":bdelete<CR>", { desct = "Quit current buffer", noremap = true, silent = true })
-
+vim.api.nvim_set_keymap("n", "<M-w>", ":bdelete<CR>", { desc = "Quit current buffer", noremap = true, silent = true })
