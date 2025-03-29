@@ -21,11 +21,11 @@ return {
             lotusViolet2 = "#766b90",
             lotusViolet3 = "#c9cbd1",
             lotusViolet4 = "#624c83",
-            lotusBlue1 = "#657b83",
-            lotusBlue2 = "#657b83",
-            lotusBlue3 = "#657b83",
-            lotusBlue4 = "#657b83",
-            lotusBlue5 = "#e68a00",
+            lotusBlue1 = "#d5cea3",
+            lotusBlue2 = "#fbe7bd",
+            lotusBlue3 = "#dcd5ac",
+            -- lotusBlue4 = "#657b83",
+            -- lotusBlue5 = "#e68a00",
             lotusGreen = "#6f894e",
             lotusGreen2 = "#6e915f",
             lotusGreen3 = "#b7d0ae",
@@ -35,7 +35,7 @@ return {
             lotusYellow = "#77713f",
             lotusYellow2 = "#836f4a",
             lotusYellow3 = "#de9800",
-            lotusYellow4 = "#f9d791",
+            lotusYellow4 = "#eee8d5",
             lotusRed = "#c84053",
             lotusRed2 = "#d7474b",
             lotusRed3 = "#e82424",
@@ -49,11 +49,28 @@ return {
             sublimeCyan = "#2aa198",
             sublimeGreen = "#007700",
             sublimeOrange = "#e68a00",
+            highlightLine = "#fbe7bd",
           },
-          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+          theme = {
+            wave = {},
+            lotus = {
+              ui = {
+                bg = "#fdf6e3",
+                bg_gutter = "#eee8d5",
+                bg_sidebar = "#eee8d5",
+              },
+            },
+            dragon = {},
+            all = {},
+          },
         },
         overrides = function(colors) -- add/modify highlights
           return {
+            CursorLine = { bg = "#eee8d5" },
+            Search = { bg = colors.palette.highlightLine, fg = colors.palette.lotusInk1, bold = true },
+            IncSearch = { bg = colors.palette.highlightLine, fg = colors.palette.lotusWhite1 },
+            --[[  CursorLineNr = { fg = "#e98a00", bg = "#eee8d5" }, ]]
+
             ["@constant"] = { fg = colors.palette.lotusInk1 },
             ["@function"] = { fg = colors.palette.sublimeGreen },
             ["@boolean"] = { bold = false, fg = colors.palette.lotusAqua },
@@ -67,6 +84,10 @@ return {
             ["@string.scss"] = { fg = colors.palette.sublimeCyan },
             ["@string.yaml"] = { fg = colors.palette.sublimeCyan },
             ["@character.special"] = { fg = colors.palette.red },
+
+            DiagnosticVirtualTextError = { bg = "#ffcccc", italic = true },
+            DiagnosticVirtualTextWarn = { bg = "#ffddaa", italic = true },
+            DiagnosticVirtualTextInfo = { bg = "#aaccee", italic = true },
           }
         end,
         theme = "lotus", -- This is the main theme setting
@@ -76,7 +97,8 @@ return {
   },
   {
     "loctvl842/monokai-pro.nvim",
-    lazy = true,
+    lazy = false,
+    priority = 1000,
     opts = function()
       local palette = {
         -- Background colors
@@ -129,7 +151,6 @@ return {
             ["@string"] = { fg = palette.yellow },
             ["@string.yaml"] = { fg = palette.yellow },
             ["@character.special"] = { fg = palette.red },
-            ["@Boolean"] = { fg = palette.red },
           }
         end,
         overridePalette = function(filter)
@@ -150,7 +171,7 @@ return {
     config = function(_, opts)
       local monokai = require("monokai-pro")
       monokai.setup(opts)
-      --[[       monokai.load() ]]
+      monokai.load()
 
       vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#5b595c" })
     end,
