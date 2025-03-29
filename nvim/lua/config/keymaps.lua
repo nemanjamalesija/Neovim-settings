@@ -20,7 +20,6 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit buffer" })
 -- Telescope/files
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep<cr>", { desc = "Live grep (text)" })
-
 vim.keymap.set("n", "<leader>f", "/\\c", { noremap = true }, { desc = "Find in current buffer" })
 vim.keymap.set("n", "<leader>D", ":%s/", { noremap = true }, { desct = "Substitute word" })
 
