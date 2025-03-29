@@ -30,7 +30,8 @@ require("lazy").setup({
 
     { "akinsho/toggleterm.nvim", version = "*", config = true },
     { "tpope/vim-eunuch" },
-
+    { "echasnovski/mini.pairs", enabled = false },
+    { "windwp/nvim-ts-autotag", enabled = false },
     { import = "plugins" },
   },
   defaults = {
