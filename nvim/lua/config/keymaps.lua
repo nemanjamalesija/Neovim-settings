@@ -8,10 +8,11 @@
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree (reveal file)" })
 vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal current file in NvimTree" })
 
--- Terminal
-vim.api.nvim_set_keymap("n", "<leader>`", "<cmd>ToggleTerm<CR>", { desc = "Toggle", noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { desc = "Insert mode close", noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<leader>`", [[<C-\><C-n><cmd>ToggleTerm<CR>]], { noremap = true, silent = true })
+--  toggleTerminal
+-- vim.api.nvim_set_keymap("n", "<leader>`", "<cmd>ToggleTerm<CR>", { desc = "Toggle", noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { desc = "Insert mode close", noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("t", "<leader>`", [[<C-\><C-n><cmd>ToggleTerm<CR>]], { noremap = true, silent = true })
+--
 
 -- File operations
 vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Save file" })
@@ -35,3 +36,4 @@ vim.api.nvim_set_keymap("n", "<M-l>", ":bnext<CR>", { desc = "See buffer on the 
 vim.api.nvim_set_keymap("n", "<C-M-h>", ":BufferLineMovePrev<CR>", { desc = "h-buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-l>", ":BufferLineMoveNext<CR>", { desc = "l-buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-w>", ":bdelete<CR>", { desc = "Quit current buffer", noremap = true, silent = true })
+
