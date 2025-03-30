@@ -28,7 +28,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.linting.eslint" },
     -- { import = "lazyvim.plugins.extras.formatting.prettier" },
 
-    { "akinsho/toggleterm.nvim", version = "*", config = true },
     { "tpope/vim-eunuch" },
     { "echasnovski/mini.pairs", enabled = false },
     { "windwp/nvim-ts-autotag", enabled = false },
