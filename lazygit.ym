@@ -1,11 +1,8 @@
-git:
-  paging:
-    colorArg: always
-    pager: delta --light --paging=never --syntax-theme="GitHub"
+paging:
+  colorArg: always
+  pager: delta --paging=never
 gui:
-  theme:
-    selectedLineBgColor:
-      - "#eee8d5"
+  skipDiscardChangeWarning: true
 # Keybindings
 keybinding:
   universal:
