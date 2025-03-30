@@ -25,18 +25,32 @@ return {
           },
           show_buffer_icons = false,
           show_buffer_close_icons = false,
-          show_close_icon = false,
           show_tab_indicators = true,
-          separator_style = "slope",
+          --[[   separator_style = "slope", ]]
           always_show_bufferline = true,
+        },
+
+        highlights = {
+          fill = {
+            bg = "#fdf6e3",
+          },
+          -- buffer_selected = {
+          --   fg = "#ffcc00",
+          --   bold = true,
+          --   italic = false,
+          -- },
         },
       })
 
+      -- Alternative method using `vim.cmd`
       -- vim.cmd([[
       --   hi BufferLineModified guifg=#fd9621 gui=underline
       --   hi BufferLineModifiedVisible guifg=#fd9621 gui=underline
       --   hi BufferLineModifiedSelected guifg=#fd9621 gui=underline
       -- ]])
+    end,
+  },
+}
     end,
   },
 }
