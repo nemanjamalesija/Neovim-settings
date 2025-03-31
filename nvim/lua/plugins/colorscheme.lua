@@ -15,7 +15,8 @@ return {
             lotusWhite1 = "#dcd5ac",
             lotusWhite2 = "#e5ddb0",
             lotusWhite3 = "#f2ecbc",
-            lotusWhite4 = "#e7dba0",
+            lotusWhite4 = "#d7e3d8",
+            lotusWhite4 = "#d7e3d8",
             lotusWhite5 = "#e4d794",
             lotusViolet1 = "#a09cac",
             lotusViolet2 = "#766b90",
@@ -58,7 +59,6 @@ return {
               ui = {
                 bg = "#fdf6e3",
                 bg_gutter = "#eee8d5",
-                bg_sidebar = "#eee8d5",
               },
             },
             dragon = {},
@@ -67,9 +67,11 @@ return {
         },
         overrides = function(colors) -- add/modify highlights
           return {
+            Cursor = { fg = "#fdf6e3", bg, bg = "#fdf6e3" },
             CursorLine = { bg = "#eee8d5" },
             Search = { bg = colors.palette.highlightLine, fg = colors.palette.lotusInk1, bold = true },
             IncSearch = { bg = colors.palette.highlightLine, fg = colors.palette.lotusWhite1 },
+            WinSeparator = { fg = colors.palette.lotusAqua },
 
             ["@constant"] = { fg = colors.palette.lotusInk1 },
             ["@constant.builtin"] = { fg = colors.palette.lotusAqua, bold = true, italic = true },
