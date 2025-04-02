@@ -7,6 +7,7 @@ return {
         ensure_installed = {
           "ts_ls",
           "volar",
+          "intelephense",
           "html",
           "cssls",
           "tailwindcss",
@@ -23,6 +24,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = false },
+      document_highlight = {
+        enabled = false,
+      },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -30,6 +34,7 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+      -- Eslint
       lspconfig.eslint.setup({
         capabilities = capabilities,
         on_attach = function(client, bufnr)
@@ -42,6 +47,7 @@ return {
         end,
       })
 
+      -- Stylelint
       lspconfig.stylelint_lsp.setup({
         capabilities = capabilities,
         on_attach = function(client, bufnr)
@@ -64,6 +70,19 @@ return {
           },
         },
         filetypes = { "css", "scss", "less", "sass" },
+      })
+
+      -- PHP
+      lspconfig.intelephense.setup({
+        capabilities = capabilities,
+        filetypes = { "php", "view", "template" }, -- Add your custom filetypes
+        settings = {
+          intelephense = {
+            files = {
+              associations = { "*.php", "*.view", "*.template" }, -- Associate files
+            },
+          },
+        },
       })
 
       -- Typescript LSP server
@@ -107,9 +126,6 @@ return {
           },
         },
       })
-    end,
-  },
-}
     end,
   },
 }
