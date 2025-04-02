@@ -2,7 +2,16 @@ return {
   "tpope/vim-fugitive",
   event = "VeryLazy",
   config = function()
-    vim.keymap.set("n", "<leader>gs", ":Git status<CR>", { desc = "[G]it [S]tatus" })
-    vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "[G]it [B]lame" })
+    vim.g.fugitive_diff_tool = "sublimemerge"
+    vim.opt.diffopt:append("vertical")
+    vim.keymap.set("n", "<leader>gs", ":Git status<CR>", { desc = "Git Status" })
+    vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "Git Blame" })
+    -- Open Sublime Merge
+    vim.keymap.set(
+      "n",
+      "<leader>gt",
+      ":silent !smerge<CR>",
+      { desc = "Open Sublime Merge", noremap = true, silent = true }
+    )
   end,
 }
