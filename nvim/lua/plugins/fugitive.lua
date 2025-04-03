@@ -13,5 +13,9 @@ return {
       ":silent !smerge<CR>",
       { desc = "Open Sublime Merge", noremap = true, silent = true }
     )
+
+    vim.cmd([[
+      cabbrev g Git
+    ]])
   end,
 }
