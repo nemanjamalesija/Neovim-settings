@@ -15,7 +15,7 @@ return {
     )
 
     vim.cmd([[
-      cabbrev g Git
+      cabbrev G Git
     ]])
   end,
 }
