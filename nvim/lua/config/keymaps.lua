@@ -40,3 +40,5 @@ end
 vim.keymap.set("n", "<M-0>", function()
   require("bufferline").go_to_buffer(-1)
 end, { desc = "Go to last buffer" })
+
+vim.keymap.set("n", "<leader>p", [["_ddP]], { desc = "Replace current line with yanked text" })
