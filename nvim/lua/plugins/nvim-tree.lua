@@ -8,17 +8,21 @@ return {
     },
     config = function()
       require("nvim-tree").setup({
+        git = {
+          enable = false,
+        },
         sort = {
           sorter = "case_sensitive",
         },
         view = {
           width = 40,
         },
-        renderer = {
-          group_empty = true,
-        },
+        -- renderer = {
+        --   group_empty = true,
+        -- },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
+          custom = { "^.DS_Store$", "^node_modules$" },
         },
       })
     end,
