@@ -86,6 +86,7 @@ return {
       "dockerfile",
       "html",
       "css",
+      "sass",
       "templ",
       "php",
     }
@@ -155,7 +156,7 @@ return {
         t("*/"),
       })
     )
-    
+
     table.insert(
       snippets,
       s({
@@ -168,9 +169,11 @@ return {
         t({ "", "/* eslint-enable */" }),
       })
     )
-    
+
+    local vue_snippets = {}
+
     table.insert(
-      snippets,
+      vue_snippets,
       s({
         trig = "scomp",
         name = "vue computed property",
@@ -183,7 +186,7 @@ return {
     )
 
     table.insert(
-      snippets,
+      vue_snippets,
       s({
         trig = "smoun",
         name = "Vue composition api on mounted",
@@ -197,13 +200,13 @@ return {
     )
 
     table.insert(
-      snippets,
+      vue_snippets,
       s({
         trig = "moun",
         name = "Vue options api on mounted",
         desc = "Initiates mounted lifecycle hook",
       }, {
-        t("mounted(() {"),
+        t("mounted() {"),
         t({ "", "  " }),
         i(1, "// code here"),
         t({ "", "}" }),
@@ -211,7 +214,7 @@ return {
     )
 
     table.insert(
-      snippets,
+      vue_snippets,
       s({
         trig = "sfo",
         name = "Vue SFC with Options API",
@@ -221,7 +224,7 @@ return {
           "<template>",
           "//",
           "</template>",
-          "<script setup>",
+          "<script>",
           "export default {",
           "  components: {},",
           "  props: {},",
@@ -242,23 +245,9 @@ return {
         }),
       })
     )
-    table.insert(
-      snippets,
-      s({
-        trig = "sfst",
-        name = "Vue SFC with TypeScript Setup",
-        desc = "Create a Vue Single-File Component with TypeScript setup syntax",
-      }, {
-        t('<script lang="ts" setup>\n'),
-        i(1, "// script content"),
-        t("\n</script>\n<template>\n"),
-        i(2, "// template content"),
-        t("\n</template>"),
-      })
-    )
 
     table.insert(
-      snippets,
+      vue_snippets,
       s({
         trig = "sfsj",
         name = "Vue SFC with Javascript Setup",
@@ -295,8 +284,7 @@ return {
         trig = "cls",
         name = "Class Attribute",
         desc = "Insert class attribute with placeholder",
-        -- Optional: add HTML scope constraint
-        ft = "html", -- Uncomment if you want to limit to HTML files only
+        ft = "html",
       }, {
         t('class="'),
         i(1, "className"),
@@ -304,36 +292,35 @@ return {
       })
     )
 
+    local scss_snippets = {}
+
+    table.insert(
+      scss_snippets,
+      s({
+        trig = "scssuse",
+        name = "SCSS Use Imports",
+        desc = "Insert common @use SCSS imports",
+      }, {
+        t({
+          "@use 'app/config/colors' as *;",
+          "@use 'app/utils-generic/config/index' as *;",
+          "@use 'app/config/breakpoints' as *;",
+          "@use 'app/config/dimensions' as *;",
+        }),
+      })
+    )
+
+    ls.add_snippets("sass", scss_snippets)
     ls.add_snippets("javascript", snippets)
     ls.add_snippets("vue", snippets)
+    ls.add_snippets("vue", vue_snippets)
+    ls.add_snippets("vue", scss_snippets)
     -- #####################################################################
     --                         all the filetypes
     -- #####################################################################
-    ls.add_snippets("all", {
-      s({
-        trig = "workflow",
-        name = "Add this -> lamw26wmal",
-        desc = "Add this -> lamw26wmal",
-      }, {
-        t("lamw26wmal"),
-      }),
-
-      s({
-        trig = "lam",
-        name = "Add this -> lamw26wmal",
-        desc = "Add this -> lamw26wmal",
-      }, {
-        t("lamw26wmal"),
-      }),
-
-      s({
-        trig = "mw25",
-        name = "Add this -> lamw26wmal",
-        desc = "Add this -> lamw26wmal",
-      }, {
-        t("lamw26wmal"),
-      }),
-    })
+    return opts
+  end,
+}
 
     return opts
   end,
