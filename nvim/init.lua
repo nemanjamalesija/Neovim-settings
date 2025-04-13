@@ -1,6 +1,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 require("config.lazy")
 
 vim.diagnostic.config({
@@ -8,10 +11,10 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
--- Associate .view and .template files with PHP filetype
 vim.filetype.add({
   extension = {
     view = "php",
     template = "php",
+    scss = "sass",
   },
 })
