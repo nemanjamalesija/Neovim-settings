@@ -12,10 +12,40 @@ vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal c
 vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit buffer" })
 
+-- Find and focus directory
+function find_directory_and_focus()
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  local function open_nvim_tree(prompt_bufnr, _)
+    actions.select_default:replace(function()
+      local api = require("nvim-tree.api")
+
+      actions.close(prompt_bufnr)
+      local selection = action_state.get_selected_entry()
+      api.tree.open()
+      api.tree.find_file(selection.cwd .. "/" .. selection.value)
+    end)
+    return true
+  end
+
+  require("telescope.builtin").find_files({
+    find_command = { "fd", "--type", "directory", "--hidden", "--exclude", ".git/*" },
+    attach_mappings = open_nvim_tree,
+  })
+end
+
+vim.keymap.set("n", "<leader>df", find_directory_and_focus)
+
 -- Telescope/files
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep<cr>", { desc = "Live grep (text)" })
-vim.keymap.set("n", "<leader>f", "/\\c", { noremap = true, desc = "Find in current buffer" })
+vim.keymap.set(
+  "n",
+  "<leader>f",
+  require("telescope.builtin").current_buffer_fuzzy_find,
+  { desc = "Fuzzy search in current buffer" }
+)
 vim.keymap.set("n", "<leader>S", ":%s/", { noremap = true, desc = "Substitute word" })
 
 -- LSP
@@ -24,12 +54,11 @@ vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to defini
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Find references" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 
--- Buffers controls
+-- Bufferline
 vim.api.nvim_set_keymap("n", "<M-h>", ":bprevious<CR>", { desc = "Focus buffer left", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-l>", ":bnext<CR>", { desc = "See buffer on the right", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-h>", ":BufferLineMovePrev<CR>", { desc = "h-buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-l>", ":BufferLineMoveNext<CR>", { desc = "l-buffer", noremap = true, silent = true })
-
 vim.keymap.set("n", "<M-w>", function()
   require("mini.bufremove").delete(0, false)
 end, { desc = "Delete buffer" })
@@ -46,3 +75,4 @@ vim.keymap.set("n", "<M-0>", function()
 end, { desc = "Go to last buffer" })
 
 vim.keymap.set("n", "<leader>r", [["_ddP]], { desc = "Replace current line with yanked text" })
+
