@@ -28,9 +28,10 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.linting.eslint" },
     -- { import = "lazyvim.plugins.extras.formatting.prettier" },
 
+    { "kdheepak/lazygit.nvim" },
     { "tpope/vim-eunuch" },
-    { "echasnovski/mini.pairs", enabled = false },
     { "windwp/nvim-ts-autotag", enabled = false },
+
     { import = "plugins" },
   },
   defaults = {
@@ -52,6 +53,7 @@ require("lazy").setup({
         "tarPlugin",
         "tohtml",
         "zipPlugin",
+        "tutor",
       },
     },
   },
