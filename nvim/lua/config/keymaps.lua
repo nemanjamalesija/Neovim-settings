@@ -27,9 +27,12 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action
 -- Bufferline
 vim.api.nvim_set_keymap("n", "<M-h>", ":bprevious<CR>", { desc = "Focus buffer left", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-l>", ":bnext<CR>", { desc = "See buffer on the right", noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-w>", ":bdelete<CR>", { desc = "Quit current buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-h>", ":BufferLineMovePrev<CR>", { desc = "h-buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-l>", ":BufferLineMoveNext<CR>", { desc = "l-buffer", noremap = true, silent = true })
+vim.keymap.set("n", "<M-w>", function()
+  require("mini.bufremove").delete(0, false)
+end, { desc = "Delete buffer" })
+
 --Go to n buffer
 for i = 1, 9 do
   vim.keymap.set("n", "<M-" .. i .. ">", function()
