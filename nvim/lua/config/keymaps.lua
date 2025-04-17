@@ -5,8 +5,13 @@
 -- or add to your init.lua if you have a different setup
 --
 -- File explorer
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree (reveal file)" })
-vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal current file in NvimTree" })
+vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree (reveal file)" })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "NvimTree",
+    callback = function()
+        vim.keymap.set("n", "<Esc>", "<cmd>NvimTreeClose<CR>", { buffer = true, silent = true })
+    end,
+})
 
 -- File operations
 vim.keymap.set("n", "<leader>s", "<cmd>w<cr>", { desc = "Save file" })
