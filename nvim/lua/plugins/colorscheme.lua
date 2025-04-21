@@ -211,7 +211,7 @@ return {
       priority = 1000,
       config = function()
           require("everforest").setup({
-              --[[                 transparent_background_level = 1, ]]
+              --[[ transparent_background_level = 1, ]]
               background = "medium",
               ui_contrast = "high",
               -- Use on_highlights to override specific syntax highlights
