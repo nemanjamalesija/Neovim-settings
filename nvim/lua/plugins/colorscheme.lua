@@ -206,15 +206,21 @@ return {
   -- },
   --
   {
-    "sainnhe/everforest",
-    -- lazy = false, -- Load immediately
-    -- priority = 1000, -- Ensure it's loaded early
-    config = function()
-      vim.o.background = "light"
-      --[[   vim.g.everforest_background = "soft" ]]
-      vim.g.everforest_better_performance = 1
-      vim.cmd("colorscheme everforest") -- Apply the theme
-    end,
+      "neanias/everforest-nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+          require("everforest").setup({
+              --[[                 transparent_background_level = 1, ]]
+              background = "medium",
+              ui_contrast = "high",
+              -- Use on_highlights to override specific syntax highlights
+              on_highlights = function(highlight_groups, palette)
+                  highlight_groups["@variable.parameter"] = { fg = "#E69875" }
+              end,
+          })
+          vim.cmd.colorscheme("everforest")
+      end,
   },
 
   {
@@ -231,7 +237,7 @@ return {
           }
         end,
       })
-      vim.cmd.colorscheme("catppuccin-mocha")
+     -- vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
 }
