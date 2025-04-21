@@ -81,3 +81,13 @@ end, { desc = "Go to last buffer" })
 
 vim.keymap.set("n", "<leader>r", [["_ddP]], { desc = "Replace current line with yanked text" })
 
+vim.keymap.set("n", "<leader>ts", function()
+    if vim.o.background == "dark" then
+        vim.o.background = "light"
+        print("Switched to light mode")
+    else
+        vim.o.background = "dark"
+        print("Switched to dark mode")
+    end
+end, { desc = "Toggle between light and dark mode" })
+
