@@ -1,5 +1,4 @@
 return {
-
     {
         "catppuccin/nvim",
         name = "catppuccin-mocha",
@@ -57,6 +56,23 @@ return {
                     highlights.String = { fg = "#2aa198" }
                     highlights["@variable"] = { fg = "#5c5c5c" }
                     highlights["@variable.member"] = { fg = "#5c5c5c" }
+                    highlights["@variable.builtin"] = { fg = "#ff005f" }
+                    highlights.NormalFloat = { bg = "#f9f9f9" }
+                    highlights.FloatBorder = { bg = "#f9f9f9", fg = "#5c5c5c" }
+                    highlights.CursorLine = { bg = "#ececec" }
+
+                    highlights.TelescopeNormal = { bg = "#f9f9f9", fg = "#5c5c5c" }
+                    highlights.TelescopeBorder = { bg = "#f9f9f9", fg = "#5c5c5c" }
+
+                    highlights.DiagnosticVirtualTextError = { fg = colors.error, bg = "NONE" }
+                    highlights.DiagnosticVirtualTextWarn = { fg = colors.warning, bg = "NONE" }
+                    highlights.DiagnosticVirtualTextInfo = { fg = colors.info, bg = "NONE" }
+                    highlights.DiagnosticVirtualTextHint = { fg = colors.hint, bg = "NONE" }
+
+                    local ref_bg = "#dcdcdc"
+                    highlights.LspReferenceText = { bg = ref_bg }
+                    highlights.LspReferenceRead = { bg = ref_bg }
+                    highlights.LspReferenceWrite = { bg = ref_bg }
                 end,
             })
             vim.cmd.colorscheme("monokai-nightasty")
