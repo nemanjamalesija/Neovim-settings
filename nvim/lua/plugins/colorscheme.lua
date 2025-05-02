@@ -64,7 +64,7 @@ return {
 
                     highlights.NormalFloat = { bg = bg_poup }
                     highlights.FloatBorder = { bg = bg_poup, fg = fg_text }
-                    highlights.CursorLine = { bg = "#ececec" }
+                    highlights.CursorLine = { bg = "#f6f6f6" }
 
                     highlights.TelescopeNormal = { bg = bg_poup, fg = fg_text }
                     highlights.TelescopeBorder = { bg = bg_poup, fg = fg_text }
