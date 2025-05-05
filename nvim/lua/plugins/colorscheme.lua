@@ -55,16 +55,25 @@ return {
                 on_highlights = function(highlights, colors)
                     local fg_text = "#5c5c5c"
                     local bg_poup = "#f9f9f9"
-                    local ref_bg = "#dcdcdc"
+                    local lsp_ref_bg = "#dddddd"
+                    local cursor_line_bg = "#f6f6f6"
+                    local sublime_blue = "#2aa198"
+                    local red = "#ff005f"
 
-                    highlights.String = { fg = "#2aa198" }
+                    highlights.String = { fg = sublime_blue }
                     highlights["@variable"] = { fg = fg_text }
-                    highlights["@variable.member"] = { fg = fg_text }
-                    highlights["@variable.builtin"] = { fg = "#ff005f" }
+                    highlights["@variable.member"] = { fg = "#4791e4" }
+                    highlights["@tag.attribute"] = { fg = "#859900" }
+
+                    highlights["@property.scss"] = { fg = fg_text }
+                    highlights["@lsp"] = { fg = fg_text }
+
+                    highlights["@variable.builtin"] = { fg = colors.red }
+                    highlights["@constant.builtin"] = { fg = colors.blue }
+                    highlights["@boolean"] = { fg = colors.blue }
 
                     highlights.NormalFloat = { bg = bg_poup }
                     highlights.FloatBorder = { bg = bg_poup, fg = fg_text }
-                    highlights.CursorLine = { bg = "#f6f6f6" }
 
                     highlights.TelescopeNormal = { bg = bg_poup, fg = fg_text }
                     highlights.TelescopeBorder = { bg = bg_poup, fg = fg_text }
@@ -74,9 +83,9 @@ return {
                     highlights.DiagnosticVirtualTextInfo = { fg = colors.info, bg = "NONE" }
                     highlights.DiagnosticVirtualTextHint = { fg = colors.hint, bg = "NONE" }
 
-                    highlights.LspReferenceText = { bg = ref_bg }
-                    highlights.LspReferenceRead = { bg = ref_bg }
-                    highlights.LspReferenceWrite = { bg = ref_bg }
+                    highlights.LspReferenceText = { bg = lsp_ref_bg }
+                    highlights.LspReferenceRead = { bg = lsp_ref_bg }
+                    highlights.LspReferenceWrite = { bg = lsp_ref_bg }
                 end,
             })
             vim.cmd.colorscheme("monokai-nightasty")
