@@ -50,6 +50,7 @@ return {
         config = function()
             require("monokai-nightasty").setup({
                 on_colors = function(colors)
+                    -- subtitute purple for yellow
                     colors.purple = "#859900"
                 end,
                 on_highlights = function(highlights, colors)
@@ -58,19 +59,19 @@ return {
                     local lsp_ref_bg = "#dddddd"
                     local cursor_line_bg = "#f6f6f6"
                     local sublime_blue = "#2aa198"
+                    local sublime_blue_dark = "#4791e4"
                     local red = "#ff005f"
+                    local purple_subtitute_yellow = "#859900"
 
                     highlights.String = { fg = sublime_blue }
                     highlights["@variable"] = { fg = fg_text }
-                    highlights["@variable.member"] = { fg = "#4791e4" }
-                    highlights["@tag.attribute"] = { fg = "#859900" }
-
+                    highlights["@variable.member"] = { fg = sublime_blue }
+                    highlights["@tag.attribute"] = { fg = purple_subtitute_yellow }
                     highlights["@property.scss"] = { fg = fg_text }
                     highlights["@lsp"] = { fg = fg_text }
-
                     highlights["@variable.builtin"] = { fg = colors.red }
-                    highlights["@constant.builtin"] = { fg = colors.blue }
-                    highlights["@boolean"] = { fg = colors.blue }
+                    highlights["@constant.builtin"] = { fg = sublime_blue_dark }
+                    highlights["@boolean"] = { fg = sublime_blue_dark }
 
                     highlights.NormalFloat = { bg = bg_poup }
                     highlights.FloatBorder = { bg = bg_poup, fg = fg_text }
