@@ -54,24 +54,31 @@ return {
                     colors.purple = "#859900"
                 end,
                 on_highlights = function(highlights, colors)
-                    local fg_text = "#5c5c5c"
+                    local fg_text = "#6c6c6c"
                     local bg_poup = "#f9f9f9"
                     local lsp_ref_bg = "#dddddd"
                     local cursor_line_bg = "#f6f6f6"
                     local sublime_blue = "#2aa198"
                     local sublime_blue_dark = "#4791e4"
                     local red = "#ff005f"
-                    local purple_subtitute_yellow = "#859900"
+                    local purple_subtitute_yellow = "#8da101"
+                    local everforest_pink = "#df69ba"
 
                     highlights.String = { fg = sublime_blue }
+                    highlights.sassVariable = { fg = fg_text }
+                    highlights.StorageClass = { fg = sublime_blue_dark }
+
+                    highlights.sassDefinition = { fg = fg_text }
+                    highlights.sassCssAttribute = { fg = colors.green }
+
                     highlights["@variable"] = { fg = fg_text }
-                    highlights["@variable.member"] = { fg = sublime_blue }
+                    highlights["@variable.member"] = { fg = sublime_blue_dark }
                     highlights["@tag.attribute"] = { fg = purple_subtitute_yellow }
                     highlights["@property.scss"] = { fg = fg_text }
                     highlights["@lsp"] = { fg = fg_text }
                     highlights["@variable.builtin"] = { fg = colors.red }
-                    highlights["@constant.builtin"] = { fg = sublime_blue_dark }
-                    highlights["@boolean"] = { fg = sublime_blue_dark }
+                    highlights["@constant.builtin"] = { fg = everforest_pink }
+                    highlights["@boolean"] = { fg = everforest_pink }
 
                     highlights.NormalFloat = { bg = bg_poup }
                     highlights.FloatBorder = { bg = bg_poup, fg = fg_text }
