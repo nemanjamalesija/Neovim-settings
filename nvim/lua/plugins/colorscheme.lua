@@ -65,20 +65,28 @@ return {
                     local everforest_pink = "#df69ba"
 
                     highlights.String = { fg = sublime_blue }
-                    highlights.sassVariable = { fg = fg_text }
-                    highlights.StorageClass = { fg = sublime_blue_dark }
+                    highlights.Constant = { fg = sublime_blue }
+                    highlights.sassVariable = { fg = colors.black }
 
-                    highlights.sassDefinition = { fg = fg_text }
+                    highlights.StorageClass = { fg = fg_text }
+                    highlights.sassClass = { fg = colors.blue }
+                    highlights.sassDefinition = { fg = colors.blue }
+
                     highlights.sassCssAttribute = { fg = colors.green }
+                    highlights.cssValueNumber = { fg = everforest_pink }
+                    highlights.cssBraces = { fg = fg_text }
 
                     highlights["@variable"] = { fg = fg_text }
                     highlights["@variable.member"] = { fg = sublime_blue_dark }
                     highlights["@tag.attribute"] = { fg = purple_subtitute_yellow }
                     highlights["@property.scss"] = { fg = fg_text }
                     highlights["@lsp"] = { fg = fg_text }
-                    highlights["@variable.builtin"] = { fg = colors.red }
+                    highlights["@variable.builtin"] = { fg = purple_subtitute_yellow, bold = true }
                     highlights["@constant.builtin"] = { fg = everforest_pink }
+                    highlights["@number"] = { fg = everforest_pink }
+
                     highlights["@boolean"] = { fg = everforest_pink }
+                    highlights["@punctuation.bracket"] = { fg = fg_text }
 
                     highlights.NormalFloat = { bg = bg_poup }
                     highlights.FloatBorder = { bg = bg_poup, fg = fg_text }
