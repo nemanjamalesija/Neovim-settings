@@ -24,23 +24,27 @@ return {
     },
     {
         "neanias/everforest-nvim",
+        version = false,
         lazy = false,
-        -- priority = 1000,
+        priority = 1000,
         config = function()
+            vim.o.background = "light"
+
             local config = {
-                background = "medium",
+                background = "hard",
                 ui_contrast = "high",
+
                 on_highlights = function(highlight_groups, palette)
                     highlight_groups["@variable.parameter"] = { fg = "#E69875" }
                 end,
             }
 
-            if vim.o.background == "dark" then
+            if vim.o.background == "dark" and config.background == "hard" then
                 config.transparent_background_level = 1
             end
 
             require("everforest").setup(config)
-            -- vim.cmd.colorscheme("everforest")
+            vim.cmd.colorscheme("everforest")
         end,
     },
     {
