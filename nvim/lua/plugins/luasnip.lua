@@ -160,6 +160,19 @@ return {
         table.insert(
             snippets,
             s({
+                trig = "note",
+                name = "Add NOTE: item",
+                desc = "Add NOTE: item",
+            }, {
+                t("/** NOTE: "),
+                i(1),
+                t("*/"),
+            })
+        )
+
+        table.insert(
+            snippets,
+            s({
                 trig = "prettierignore",
                 name = "Prettier ignore block",
                 desc = "Creates a block to disable prettier formatting",
