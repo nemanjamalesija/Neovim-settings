@@ -257,33 +257,36 @@ return {
     -- something, but you want to go to the line below, if you press enter,
     -- the completion will be accepted
     -- https://cmp.saghen.dev/configuration/keymap.html#default
-    opts.keymap = {
-      preset = "default",
-            ["<Tab>"] = {
-        function(cmp)
-          if cmp.snippet_active() then
-            return cmp.accept()
-          else
-            return cmp.select_and_accept()
-          end
-        end,
-        "snippet_forward",
-        "fallback",
-      },
-      ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      ["<Up>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
-      ["<C-p>"] = { "select_prev", "fallback" },
-      ["<C-n>"] = { "select_next", "fallback" },
+        opts.keymap = {
+            preset = "default",
+        --   ["<Tab>"] = {
+        --     function(cmp)
+        --       if cmp.snippet_active() then
+        --         return cmp.accept()
+        --       else
+        --         return cmp.select_and_accept()
+        --       end
+        --     end,
+        --     "snippet_forward",
+        --     "fallback",
+        --   },
+            ["<Tab>"] = { "snippet_forward", "fallback" },
+            ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      ["<S-k>"] = { "scroll_documentation_up", "fallback" },
-      ["<S-j>"] = { "scroll_documentation_down", "fallback" },
+            ["<Up>"] = { "select_prev", "fallback" },
+            ["<Down>"] = { "select_next", "fallback" },
+            ["<C-p>"] = { "select_prev", "fallback" },
+            ["<C-n>"] = { "select_next", "fallback" },
 
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-e>"] = { "hide", "fallback" },
-    }
+            ["<S-k>"] = { "scroll_documentation_up", "fallback" },
+            ["<S-j>"] = { "scroll_documentation_down", "fallback" },
 
-    return opts
-  end,
+            ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+            ["<C-e>"] = { "hide", "fallback" },
+        }
+
+        return opts
+    end,
 }
+
