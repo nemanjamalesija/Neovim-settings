@@ -65,8 +65,13 @@ vim.api.nvim_set_keymap("n", "<M-l>", ":bnext<CR>", { desc = "See buffer on the 
 vim.api.nvim_set_keymap("n", "<C-M-h>", ":BufferLineMovePrev<CR>", { desc = "h-buffer", noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-l>", ":BufferLineMoveNext<CR>", { desc = "l-buffer", noremap = true, silent = true })
 vim.keymap.set("n", "<M-w>", function()
-  require("mini.bufremove").delete(0, false)
-end, { desc = "Delete buffer" })
+    require("mini.bufremove").delete(0, false)
+end, { desc = "Delete buffer" }) -- WezTerm Alt + w
+
+vim.keymap.set("n", "∑", function()
+    require("mini.bufremove").delete(0, false)
+end, { desc = "Delete buffer" }) -- Ghost terminal interprets alt as ∑
+
 
 --Go to n buffer
 for i = 1, 9 do
