@@ -110,4 +110,26 @@ return {
             vim.cmd.colorscheme("monokai-nightasty")
         end,
     },
+    {
+        "morhetz/gruvbox",
+        config = function()
+            vim.o.background = "dark"
+            vim.g.gruvbox_contrast_dark = "medium"
+            vim.g.gruvbox_invert_selection = 0
+            vim.cmd.colorscheme("gruvbox")
+
+            -- Transparency
+            vim.cmd([[
+            highlight Normal guibg=NONE ctermbg=NONE
+            highlight NormalNC guibg=NONE ctermbg=NONE
+            highlight NormalFloat guibg=NONE ctermbg=NONE
+            highlight Pmenu guibg=NONE ctermbg=NONE
+            highlight SignColumn guibg=NONE ctermbg=NONE
+            highlight VertSplit guibg=NONE ctermbg=NONE
+            highlight NvimTreeNormal guibg=NONE ctermbg=NONE
+            highlight TelescopeNormal guibg=NONE ctermbg=NONE
+            highlight EndOfBuffer guibg=NONE ctermbg=NONE
+            ]])
+        end,
+    },
 }
