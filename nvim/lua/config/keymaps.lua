@@ -96,3 +96,6 @@ vim.keymap.set("n", "<leader>ts", function()
     end
 end, { desc = "Toggle between light and dark mode" })
 
+-- Rename
+vim.keymap.set("n", "<leader>rn", ":IncRename ")
+
