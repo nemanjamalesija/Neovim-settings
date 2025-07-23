@@ -19,38 +19,81 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit buffer" })
 
 -- Find and focus directory
 function find_directory_and_focus()
-  local actions = require("telescope.actions")
-  local action_state = require("telescope.actions.state")
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
 
-  local function open_nvim_tree(prompt_bufnr, _)
-    actions.select_default:replace(function()
-      local api = require("nvim-tree.api")
+    local function open_nvim_tree(prompt_bufnr, _)
+        actions.select_default:replace(function()
+            local api = require("nvim-tree.api")
 
-      actions.close(prompt_bufnr)
-      local selection = action_state.get_selected_entry()
-      api.tree.open()
-      api.tree.find_file(selection.cwd .. "/" .. selection.value)
-    end)
-    return true
-  end
+            actions.close(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            api.tree.open()
+            api.tree.find_file(selection.cwd .. "/" .. selection.value)
+        end)
+        return true
+    end
 
-  require("telescope.builtin").find_files({
-    find_command = { "fd", "--type", "directory", "--hidden", "--exclude", ".git/*" },
-    attach_mappings = open_nvim_tree,
-  })
+    require("telescope.builtin").find_files({
+        find_command = { "fd", "--type", "directory", "--hidden", "--exclude", ".git/*" },
+        attach_mappings = open_nvim_tree,
+    })
 end
 
 vim.keymap.set("n", "<leader>df", find_directory_and_focus)
 
 -- Telescope/files
-vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-vim.keymap.set("n", "<leader>F", "<cmd>Telescope live_grep<cr>", { desc = "Live grep (text)" })
+vim.keymap.set("n", "<leader><leader>", function()
+    require("telescope.builtin").find_files({
+        hidden = true,
+        no_ignore = true,
+        follow = true,
+        find_command = {
+            "fd",
+            "--type",
+            "f",
+            "--hidden",
+            "--follow",
+            "--exclude",
+            "node_modules",
+            "--exclude",
+            "dist",
+            "--exclude",
+            ".git",
+            "--exclude",
+            "build",
+            "--exclude",
+            "coverage",
+        },
+    })
+end, { desc = "Find files (clean search, exclude dist/node_modules/etc)" })
+
+-- Find all
+vim.keymap.set("n", "<leader>F", function()
+    require("telescope.builtin").live_grep({
+        additional_args = function()
+            return {
+                "--hidden",
+                "--no-ignore",
+                "--glob",
+                "!**/node_modules/**",
+                "--glob",
+                "!**/dist/**",
+                "--glob",
+                "!**/ssr-dist/**",
+                "-F", -- Treat query as literal string, not regex
+            }
+        end,
+    })
+end, { desc = "Live grep (literal search, exclude junk)" })
+
 vim.keymap.set(
-  "n",
-  "<leader>f",
-  require("telescope.builtin").current_buffer_fuzzy_find,
-  { desc = "Fuzzy search in current buffer" }
+    "n",
+    "<leader>f",
+    require("telescope.builtin").current_buffer_fuzzy_find,
+    { desc = "Fuzzy search in current buffer" }
 )
+
 vim.keymap.set("n", "<leader>S", ":%s/", { noremap = true, desc = "Substitute word" })
 
 -- LSP
@@ -72,18 +115,6 @@ vim.keymap.set("n", "∑", function()
     require("mini.bufremove").delete(0, false)
 end, { desc = "Delete buffer" }) -- Ghost terminal interprets alt as ∑
 
-
---Go to n buffer
-for i = 1, 9 do
-  vim.keymap.set("n", "<M-" .. i .. ">", function()
-    require("bufferline").go_to_buffer(i)
-  end, { desc = "Go to buffer " .. i })
-end
-
-vim.keymap.set("n", "<M-0>", function()
-  require("bufferline").go_to_buffer(-1)
-end, { desc = "Go to last buffer" })
-
 vim.keymap.set("n", "<leader>r", [["_ddP]], { desc = "Replace current line with yanked text" })
 
 vim.keymap.set("n", "<leader>ts", function()
@@ -95,6 +126,9 @@ vim.keymap.set("n", "<leader>ts", function()
         print("Switched to dark mode")
     end
 end, { desc = "Toggle between light and dark mode" })
+
+-- Rename
+vim.keymap.set("n", "<leader>rn", ":IncRename ")
 
 -- Rename
 vim.keymap.set("n", "<leader>rn", ":IncRename ")
