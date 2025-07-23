@@ -6,6 +6,8 @@
 --
 -- File explorer
 vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle NvimTree (reveal file)" })
+
+-- Close NvimTree
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "NvimTree",
     callback = function()
@@ -39,10 +41,10 @@ function find_directory_and_focus()
         attach_mappings = open_nvim_tree,
     })
 end
-
-vim.keymap.set("n", "<leader>df", find_directory_and_focus)
+vim.keymap.set("n", "<leader>ds", find_directory_and_focus)
 
 -- Telescope/files
+-- Find files
 vim.keymap.set("n", "<leader><leader>", function()
     require("telescope.builtin").find_files({
         hidden = true,
@@ -68,7 +70,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     })
 end, { desc = "Find files (clean search, exclude dist/node_modules/etc)" })
 
--- Find all
+-- Grep find all
 vim.keymap.set("n", "<leader>F", function()
     require("telescope.builtin").live_grep({
         additional_args = function()
@@ -87,6 +89,7 @@ vim.keymap.set("n", "<leader>F", function()
     })
 end, { desc = "Live grep (literal search, exclude junk)" })
 
+-- Fuzzy search in current buffer
 vim.keymap.set(
     "n",
     "<leader>f",
@@ -94,6 +97,15 @@ vim.keymap.set(
     { desc = "Fuzzy search in current buffer" }
 )
 
+-- Grep find all in specific folder
+vim.keymap.set("n", "<leader>fd", function()
+    local dir = vim.fn.input("grep directory: ")
+    require("telescope.builtin").live_grep({
+        search_dirs = { dir },
+    })
+end, { desc = "live grep in user directory" })
+
+-- Substitute word
 vim.keymap.set("n", "<leader>S", ":%s/", { noremap = true, desc = "Substitute word" })
 
 -- LSP
@@ -126,10 +138,3 @@ vim.keymap.set("n", "<leader>ts", function()
         print("Switched to dark mode")
     end
 end, { desc = "Toggle between light and dark mode" })
-
--- Rename
-vim.keymap.set("n", "<leader>rn", ":IncRename ")
-
--- Rename
-vim.keymap.set("n", "<leader>rn", ":IncRename ")
-
