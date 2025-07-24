@@ -10,5 +10,8 @@ return {
             input_buffer_type = nil,
             post_hook = nil,
         })
+
+        -- Keymaps
+        vim.keymap.set("n", "<leader>rn", ":IncRename ")
     end,
 }
