@@ -51,6 +51,12 @@ return {
                     "build",
                     "--exclude",
                     "coverage",
+                    "--exclude",
+                    "**/var/translations-cache/**",
+                    "--exclude",
+                    "**/var/minimalna-dumps/**",
+                    "--exclude",
+                    "**/migrations/**",
                 },
             })
         end, { desc = "Find files (clean search, exclude dist/node_modules/etc)" })
