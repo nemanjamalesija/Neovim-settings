@@ -72,6 +72,12 @@ return {
                         "!**/var/translations-cache/**",
                         "--glob",
                         "!**/var/minimalna-dumps/**",
+                        "--glob",
+                        "!**/.git/logs/**",
+                        "--glob",
+                        "!**/migrations/**",
+                        "--glob",
+                        "!**/var/cache/dev/**",
                         "-F", -- Treat query as literal string, not regex
                     }
                 end,
