@@ -1,5 +1,3 @@
-vim.g.autoformat = false
-
 vim.api.nvim_create_user_command("ConformDisable", function(args)
     if args.bang then
         vim.b.disable_autoformat = true
