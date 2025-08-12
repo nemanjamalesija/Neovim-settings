@@ -8,7 +8,7 @@ return {
             config = function()
                 require("notify").setup({
                     stages = "fade",
-                    
+                    render = "minimal",
                 })
             end,
         },
@@ -20,15 +20,21 @@ return {
                 ["vim.lsp.util.stylize_markdown"] = true,
             },
         },
-        presets = {
-            command_palette = true,
-            long_message_to_split = false,
-            inc_rename = true,
-            lsp_doc_border = false,
-        },
         notify = {
             enabled = true,
             view = "notify",
+        },
+        cmdline = {
+            view = "cmdline",
+
+            format = {
+                search_down = {
+                    view = "cmdline",
+                },
+                search_up = {
+                    view = "cmdline",
+                },
+            },
         },
         views = {
             notify = {
