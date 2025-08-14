@@ -1,3 +1,7 @@
+vim.keymap.set("n", "<leader>nc", function()
+    require("notify").dismiss()
+end, { desc = "Dismiss notify popup and clear hlsearch" })
+
 return {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -7,8 +11,20 @@ return {
             "rcarriga/nvim-notify",
             config = function()
                 require("notify").setup({
+                    timeout = 3000,
+                    max_height = function()
+                        return math.floor(vim.o.lines * 0.75)
+                    end,
+                    max_width = function()
+                        return math.floor(vim.o.columns * 0.60)
+                    end,
+                    on_open = function(win)
+                        vim.api.nvim_win_set_config(win, { focusable = true })
+                    end,
+                    -- render = "minimal",
+                    render = "default",
                     stages = "fade",
-                    render = "minimal",
+                    level = 3,
                 })
             end,
         },
@@ -26,14 +42,9 @@ return {
         },
         cmdline = {
             view = "cmdline",
-
             format = {
-                search_down = {
-                    view = "cmdline",
-                },
-                search_up = {
-                    view = "cmdline",
-                },
+                search_down = { view = "cmdline" },
+                search_up = { view = "cmdline" },
             },
         },
         views = {
@@ -47,10 +58,6 @@ return {
                     winblend = 0,
                     wrap = true,
                 },
-                size = {
-                    width = "auto",
-                    height = "auto",
-                },
                 position = {
                     row = 1,
                     col = -2,
@@ -60,17 +67,10 @@ return {
         routes = {
             {
                 filter = {
-                    event = "notify",
+                    event = "msg_show",
+                    find = "written",
                 },
-                view = "notify",
-                opts = {
-                    timeout = 3000,
-                    title = "",
-                    position = {
-                        row = 1,
-                        col = -2,
-                    },
-                },
+                opts = { skip = true },
             },
         },
     },
