@@ -1,7 +1,9 @@
 -- ~/.config/nvim/lua/plugins/completion.lua
+
 return {
     {
         "hrsh7th/nvim-cmp",
+        enabled = true,
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
@@ -28,25 +30,6 @@ return {
                 { name = "luasnip", priority = 750 },
                 { name = "buffer", priority = 500 },
                 { name = "path", priority = 250 },
-            })
-
-            -- Custom keymaps (GitHub Copilot friendly)
-            opts.mapping = cmp.mapping.preset.insert({
-                ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<C-e>"] = cmp.mapping.abort(),
-                ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Only confirm explicitly selected items
-                -- Leave Tab completely free for Copilot
-                ["<Tab>"] = function(fallback)
-                    fallback()
-                end,
-                ["<S-Tab>"] = function(fallback)
-                    fallback()
-                end,
             })
 
             -- Performance settings
