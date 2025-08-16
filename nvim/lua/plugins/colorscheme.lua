@@ -12,17 +12,6 @@ return {
         end,
     },
     {
-        "folke/tokyonight.nvim",
-        name = "tokyonight",
-
-        config = function()
-            require("tokyonight").setup({
-                transparent = true,
-            })
-            -- vim.cmd.colorscheme("tokyonight")
-        end,
-    },
-    {
         "neanias/everforest-nvim",
         version = false,
         lazy = false,
@@ -32,7 +21,7 @@ return {
 
             local config = {
                 background = "hard",
-                ui_contrast = "high",
+                -- ui_contrast = "high",
 
                 on_highlights = function(highlight_groups, palette)
                     highlight_groups["@variable.parameter"] = { fg = "#E69875" }
@@ -44,7 +33,7 @@ return {
             end
 
             require("everforest").setup(config)
-            vim.cmd.colorscheme("everforest")
+            -- vim.cmd.colorscheme("everforest")
         end,
     },
     {
@@ -107,29 +96,20 @@ return {
                     highlights.LspReferenceWrite = { bg = lsp_ref_bg }
                 end,
             })
-            vim.cmd.colorscheme("monokai-nightasty")
+            -- vim.cmd.colorscheme("monokai-nightasty")
         end,
     },
     {
-        "morhetz/gruvbox",
+        "Mofiqul/vscode.nvim",
         config = function()
             vim.o.background = "dark"
-            vim.g.gruvbox_contrast_dark = "medium"
-            vim.g.gruvbox_invert_selection = 0
-            vim.cmd.colorscheme("gruvbox")
-
-            -- Transparency
-            vim.cmd([[
-            highlight Normal guibg=NONE ctermbg=NONE
-            highlight NormalNC guibg=NONE ctermbg=NONE
-            highlight NormalFloat guibg=NONE ctermbg=NONE
-            highlight Pmenu guibg=NONE ctermbg=NONE
-            highlight SignColumn guibg=NONE ctermbg=NONE
-            highlight VertSplit guibg=NONE ctermbg=NONE
-            highlight NvimTreeNormal guibg=NONE ctermbg=NONE
-            highlight TelescopeNormal guibg=NONE ctermbg=NONE
-            highlight EndOfBuffer guibg=NONE ctermbg=NONE
-            ]])
+            require("vscode").setup({
+                background = "hard",
+                group_overrides = {
+                    ["@variable.parameter"] = { fg = "#E69875" },
+                },
+            })
+            vim.cmd.colorscheme("vscode")
         end,
     },
 }
