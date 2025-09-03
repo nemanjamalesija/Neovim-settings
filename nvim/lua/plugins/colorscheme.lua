@@ -1,45 +1,6 @@
-return {
-    {
-        "catppuccin/nvim",
-        name = "catppuccin-mocha",
-
-        config = function()
-            require("catppuccin").setup({
-                flavour = "mocha",
-                transparent_background = true,
-            })
-            --[[ vim.cmd.colorscheme("catppuccin-mocha") ]]
-        end,
-    },
-    {
-        "neanias/everforest-nvim",
-        version = false,
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.o.background = "light"
-
-            local config = {
-                background = "hard",
-                -- ui_contrast = "high",
-
-                on_highlights = function(highlight_groups, palette)
-                    highlight_groups["@variable.parameter"] = { fg = "#E69875" }
-                end,
-            }
-
-            if vim.o.background == "dark" and config.background == "hard" then
-                config.transparent_background_level = 1
-            end
-
-            require("everforest").setup(config)
-            -- vim.cmd.colorscheme("everforest")
-        end,
-    },
     {
         "polirritmico/monokai-nightasty.nvim",
-        priority = 1000,
-        lazy = false,
+        lazy = true,
         config = function()
             require("monokai-nightasty").setup({
                 on_colors = function(colors)
@@ -50,10 +11,8 @@ return {
                     local fg_text = "#6c6c6c"
                     local bg_poup = "#f9f9f9"
                     local lsp_ref_bg = "#dddddd"
-                    local cursor_line_bg = "#f6f6f6"
                     local sublime_blue = "#2aa198"
                     local sublime_blue_dark = "#4791e4"
-                    local red = "#ff005f"
                     local purple_subtitute_yellow = "#8da101"
                     local everforest_pink = "#df69ba"
 
@@ -99,17 +58,3 @@ return {
             -- vim.cmd.colorscheme("monokai-nightasty")
         end,
     },
-    {
-        "Mofiqul/vscode.nvim",
-        config = function()
-            vim.o.background = "dark"
-            require("vscode").setup({
-                background = "hard",
-                group_overrides = {
-                    ["@variable.parameter"] = { fg = "#E69875" },
-                },
-            })
-            vim.cmd.colorscheme("vscode")
-        end,
-    },
-}
